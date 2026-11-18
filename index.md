@@ -38,6 +38,13 @@ section.cover h2 { font-size: 1em; margin-top: 1.4em; }
 section.closing li::marker { color: #c2e89a; }
 section::after { color: #688078; font-size: 17px; }
 section.benchmark pre { font-size: .62em; }
+section blockquote { border-left: 6px solid #84ac6e; color: #124e45; font-weight: 700; font-size: 1.5em; padding: .2em .65em; margin: .5em 0; }
+section table { border-collapse: collapse; }
+section table :is(th, td) { text-align: left; border: 0; border-bottom: 1px solid #bdccc0; }
+section tbody tr:nth-child(n) { background: transparent; }
+section table th { font-size: .82em; }
+section.closing ul { list-style: none; padding: 0; }
+section.closing li { padding: .45em 0; border-top: 1px solid #527569; }
 </style>
 
 <!-- _class: cover -->
@@ -97,42 +104,34 @@ section.benchmark pre { font-size: .62em; }
 
 ## でもまだShell使うな……
 
-だってわざわざAIを使うまでもないときもある
+> 「あのコマンドを打てば終わるな」
 
-- やることが単純で明らか
-    - なんなら早い
-- 結果を想定できている
-- 操作に習熟している
+やることが決まっていて、結果も想像できる。
+そんなときは、慣れたシェルで自分で打つほうが早い。
 
 ---
 
 ## なら今の使い方に合わせて設定しよう
 
-- 起動高速化
-- シェル操作効率化
-    - alias/abbr
-    - キーバインド
-    - 補完
-- 便利コマンド導入
-    - zoxide
-    - direnv
-    - mise/nix
+| シェルでやりたいこと | 見直すところ |
+|---|---|
+| 開いたらすぐ打ちたい | 起動時に読み込む設定 |
+| 知っているコマンドを短く打ちたい | abbr・alias・キーバインド・補完 |
+| プロジェクトをすぐ切り替えたい | zoxide・direnv・mise/nix |
 
 ---
 
 ## 起動高速化
 
-待てる操作はAIなら、すぐ結果の欲しいシェル操作では起動時間が命
+**最初の一文字を、いつ打てるか？**
 
-- いらない設定を削ろう
-    - AIにシェル実行任せるならいらんなって設定は消す
-- 遅延読み込みを活用しよう
-    - 関数定義などを必要になったタイミングで読み込む
-    - シェル利用が減った今こそ無駄な初期読み込みを削ぐ
-    - fish なら組込みの遅延読み込み機能で十分
-    - zsh なら zsh-defer + zcompile とかいいぞ（[@fuzmareさんの記事参照](https://zenn.dev/fuzmare/articles/zsh-plugin-manager-cache)）
-- 起動速度じゃなくて、ユーザー入力を受け付けるまでの時間を短くしよう
-    - NG例: プロンプト表示高速化のためにgit statusを非同期反映したが、反映完了までユーザー入力をブロックする
+プロンプトが見えても、裏で走る `git status` の完了まで入力をブロックしたら待ち時間は残る。
+
+| 設定を見直すとき | やること |
+|---|---|
+| AIに任せて使わなくなった | 起動時の設定から外す |
+| ときどき使う関数がある | fishの自動読み込みで、必要なときに読む |
+| zshの初期化が重い | [zsh-defer と zcompile を使った例](https://zenn.dev/fuzmare/articles/zsh-plugin-manager-cache) |
 
 ---
 
@@ -156,16 +155,16 @@ hyperfine --warmup 5 --runs 10 "expect -c 'log_user 0; set timeout 5; spawn -noe
 
 ## シェルのabbrはいいぞ
 
-手入力の遅さを補う
+`gpr` と打ってスペースを押すと……
 
-- abbrはキーワードからコマンドに展開できる
-    - 例: `gpr`を`gh pr checkout --detach`に展開
-- オプションをその場で変更できる
-    - 例: `--detach`を削る
-- コマンド履歴を正規化できる
-    - 例: `ll`や`la`のような`ls`ショートカットが履歴に`ls -l`や`ls -a`として残る
-- 画面共有で誤解が減る
-    - 例: aliasだと`ll`って`ls -a`か`ls -l`かわからん
+```sh
+gh pr checkout --detach
+```
+
+**実行前に編集できる。** 今回はブランチに乗りたい？　それなら `--detach` を消せばいい。
+
+履歴にも画面共有にも展開後のコマンドが出る。
+`ll` が `ls -l` と `ls -a` のどちらだったか、あとから迷わない。
 
 ---
 
@@ -182,14 +181,13 @@ fishのabbrは関数で定義できるので複雑なこともできる
 
 ## シェルのaliasもたまにはいいぞ
 
-aliasも手入力の遅さを補う
+```sh
+alias ll='ls -l'
+```
 
-- aliasはコマンドを短縮できる
-    - 例: `alias ll='ls -l'`
-- abbrの旨みが不要な場面で使う
-    - オプションを変えることがない
-    - コマンド履歴にそのまま入っていい
-    - 画面共有で誤解がない・気にしない
+**いつも同じオプションで使うなら、これで十分。**
+
+入力も履歴も `ll` のまま。画面を一緒に見る人にも通じる短縮名なら使いやすい。
 
 ---
 
@@ -206,11 +204,11 @@ aliasも手入力の遅さを補う
 
 ## シェルのキーバインドを使いこなせ
 
-複雑な操作を簡略化
-
-- `CTRL+A`で行頭に移動
-- `CTRL+R`で履歴からコマンドを再利用
-- `CTRL+X CTRL+F`でファイル名補完
+| こんなとき | 押すキー |
+|---|---|
+| 長いコマンドの先頭を直したい | `Ctrl+A` |
+| 昨日打ったコマンドを探したい | `Ctrl+R` |
+| ファイル名の候補を出したい（Bash） | `Ctrl+X` → `Ctrl+F` |
 
 ---
 
