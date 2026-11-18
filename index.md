@@ -3,28 +3,47 @@ paginate: true
 ---
 
 <style>
-video,img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border: 1px solid #888;
+section {
+  background: #f8f6ef;
+  color: #172c29;
+  padding: 60px 82px;
+  font: 30px/1.48 "Hiragino Sans", "Noto Sans JP", sans-serif;
+  border-left: 12px solid #167263;
 }
-a {
-  color: #5555AD;
+section h2 {
+  color: #124e45;
+  font-size: 1.52em;
+  letter-spacing: -.035em;
+  margin: 0 0 .5em;
 }
-small {
-  font-size: 0.8em;
+section ul { padding-left: 1.25em; }
+section li::marker { color: #16816d; }
+section li li { font-size: .87em; color: #425850; }
+section a, section strong { color: #096954; }
+section code { background: #e0ebe3; color: #124e45; border-radius: .18em; }
+section pre { background: #142e2b; padding: .8em 1em; border: 0; }
+section pre code { color: #dcf7dd; background: transparent; white-space: pre-wrap; overflow-wrap: anywhere; }
+section table { font-variant-numeric: tabular-nums; }
+section th, section td { padding: .25em 1.1em; }
+section th { background: #184f45; color: white; }
+section img[alt*="height:1em"] { border-radius: 50%; }
+section.cover, section.closing {
+  color: #f7f5e9;
+  background: radial-gradient(ellipse at top right, #24594b, transparent 65%), #102d28;
+  border-color: #b2de75;
 }
-strong {
-  color: #AD5555;
-}
-h1 {
-  font-size: 2em;
-}
+section.cover h1 { color: #f7f5e9; font-size: 2.22em; line-height: 1.28; }
+section.cover h2, section.closing h2, section.closing strong { color: #c2e89a; }
+section.cover h2 { font-size: 1em; margin-top: 1.4em; }
+section.closing li::marker { color: #c2e89a; }
+section::after { color: #688078; font-size: 17px; }
+section.benchmark pre { font-size: .62em; }
 </style>
 
+<!-- _class: cover -->
+<!-- _paginate: false -->
 
-# AIじゃない！<br/>あえてシェルを使うための設定Tips！！
+# AIじゃない！<br>あえてシェルを使うための<br>設定Tips！！
 
 <!-- https://findy.connpass.com/event/387107/ -->
 
@@ -47,11 +66,13 @@ h1 {
 
 ---
 
-## 著書: Rが生産性を高める (2022)
+![bg right:38% contain](https://gihyo.jp/assets/images/cover/2022/9784297125240.jpg)
 
-〜データ分析ワークフロー効率化の実践
+## Rが生産性を高める
 
-![height:10em](https://gihyo.jp/assets/images/cover/2022/9784297125240.jpg)
+データ分析ワークフロー効率化の実践
+
+著書（2022年）
 
 ---
 
@@ -114,6 +135,8 @@ h1 {
     - NG例: プロンプト表示高速化のためにgit statusを非同期反映したが、反映完了までユーザー入力をブロックする
 
 ---
+
+<!-- _class: benchmark -->
 
 ## fishの真の起動時間をはかる
 
@@ -181,13 +204,13 @@ aliasも手入力の遅さを補う
 
 ---
 
-## シェルのキーバインドを使い込なせ
+## シェルのキーバインドを使いこなせ
 
 複雑な操作を簡略化
 
 - `CTRL+A`で行頭に移動
 - `CTRL+R`で履歴からコマンドを再利用
-- `CTRL+X CTRF+F`でファイル名補完
+- `CTRL+X CTRL+F`でファイル名補完
 
 ---
 
@@ -211,10 +234,12 @@ gh completion -s fish >~/.config/fish/completions/gh.fish
 
 ---
 
+<!-- _class: closing -->
+
 ## まとめ
 
 AIに任せる作業が増えた今こそ、自分でよく打つコマンドに合わせて設定しよう
 
-- 起動してすぐ打てるように、入力できるまでの時間を測って、重い設定は遅延読み込みに
-- よく打つコマンドはabbrやaliasで短く。履歴検索と補完も使って手入力を減らそう
-- よく行く場所にはzoxideでひとっ飛び。プロジェクトごとの環境はdirenvやmise/nixに任せよう
+- **すぐ打てる**　入力できるまでを測り、重い設定は遅延読み込みに
+- **短く打てる**　よく打つコマンドはabbrで展開。履歴や補完も活用しよう
+- **すぐ取りかかれる**　移動はzoxide、環境の切り替えはdirenvやmise/nixで
