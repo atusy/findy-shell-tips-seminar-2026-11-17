@@ -45,6 +45,11 @@ section tbody tr:nth-child(n) { background: transparent; }
 section table th { font-size: .82em; }
 section.closing ul { list-style: none; padding: 0; }
 section.closing li { padding: .45em 0; border-top: 1px solid #527569; }
+.startup-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
+.startup-cards article { padding: 22px 28px; background: #edeae0; border-radius: 14px; }
+.startup-cards article:last-child { background: #dfecdf; }
+.startup-cards h3 { margin: 0 0 10px; font-size: 1.14em; color: #124e45; }
+.startup-cards p { margin: 0; font-size: .94em; }
 </style>
 
 <!-- _class: cover -->
@@ -127,11 +132,19 @@ section.closing li { padding: .45em 0; border-top: 1px solid #527569; }
 
 プロンプトが見えても、裏で走る `git status` の完了まで入力をブロックしたら待ち時間は残る。
 
-| 設定を見直すとき | やること |
-|---|---|
-| AIに任せて使わなくなった | 起動時の設定から外す |
-| ときどき使う関数がある | fishの自動読み込みで、必要なときに読む |
-| zshの初期化が重い | [zsh-defer と zcompile を使った例](https://zenn.dev/fuzmare/articles/zsh-plugin-manager-cache) |
+<div class="startup-cards">
+  <article>
+    <h3>使わなくなった</h3>
+    <p>消せ</p>
+  </article>
+  <article>
+    <h3>使う</h3>
+    <p>極力、遅延読み込みしろ</p>
+  </article>
+</div>
+
+- fishは関数の自動読み込みが便利
+- zshなら [zsh-defer と zcompile を使った起動設定の例](https://zenn.dev/fuzmare/articles/zsh-plugin-manager-cache)も参考になる
 
 ---
 
@@ -238,6 +251,6 @@ gh completion -s fish >~/.config/fish/completions/gh.fish
 
 AIに任せる作業が増えた今こそ、自分でよく打つコマンドに合わせて設定しよう
 
-- **すぐ打てる**　入力できるまでを測り、重い設定は遅延読み込みに
+- **すぐ打てる**　入力できるまでを測ろう。関数やプラグインは必要になってから読み込もう
 - **短く打てる**　よく打つコマンドはabbrで展開。履歴や補完も活用しよう
 - **すぐ取りかかれる**　移動はzoxide、環境の切り替えはdirenvやmise/nixで
