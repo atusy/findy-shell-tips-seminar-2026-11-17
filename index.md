@@ -160,13 +160,24 @@ section.closing li { padding: .45em 0; border-top: 1px solid #527569; }
 
 ---
 
+<!-- _class: benchmark -->
+
 ## シェルの真の起動時間をはかる
 
-- `fish -i -c exit`なんて測ってないよね……？
+- `fish -i -c exit`なんて測ってないよね……？過剰評価するよ
 - @AI: fishでユーザー入力ができるまでの所要時間をはかりたい
 
 ```fish
-hyperfine --warmup 5 --runs 10 "expect -c 'log_user 0; set timeout 5; spawn -noecho sh -c {stty rows 24 cols 120; exec env TERM=xterm-256color fish -i}; expect -exact [format {%c[0c} 27] {send -- [format {%c[?1;2c} 27]; exp_continue} -exact {133;B} {close; exit 0} timeout {exit 1} eof {exit 2}'"
+hyperfine --warmup 5 --runs 10 "expect -c '
+  log_user 0
+  set timeout 5
+  spawn -noecho sh -c {stty rows 24 cols 120; exec env TERM=xterm-256color fish -i}
+  set query [format {%c[0c} 27]
+  expect -exact \$query {send -- [format {%c[?1;2c} 27]; exp_continue} \
+    -exact {133;B} {close; exit 0} \
+    timeout {exit 1} \
+    eof {exit 2}
+'"
 ```
 ---
 
