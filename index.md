@@ -50,6 +50,8 @@ section.closing li { padding: .45em 0; border-top: 1px solid #527569; }
 .startup-cards article:last-child { background: #dfecdf; }
 .startup-cards h3 { margin: 0 0 10px; font-size: 1.14em; color: #124e45; }
 .startup-cards p { margin: 0; font-size: .94em; }
+.abbr-demos video { display: block; width: 100%; border-radius: 8px; margin: 16px 0; }
+.abbr-demos article { min-width: 0; }
 </style>
 
 <!-- _class: cover -->
@@ -211,12 +213,21 @@ gh pr checkout --detach
 
 ## こんなabbrもいいぞ
 
-- ちょっとした計算をラクチンに
-    - `math`と入力すると`math ""`に展開され引用符の中にカーソルが入る
-- 繰り返し入力をラクチンに
-    - `mv すごく/ながい/パス ,-1`を`mv すごく/ながい/パス すごく/ながい/パス`に展開
+fishのabbrは関数で定義すると複雑なことができる
 
-fishのabbrは関数で定義できるので複雑なこともできる
+<div class="startup-cards abbr-demos">
+  <article>
+    <h3>すぐ使える電卓</h3>
+    <video src="images/abbr-math.mp4" autoplay muted loop playsinline controls aria-label="mathを展開し、引用符の中に式を入力する例"></video>
+    <p><code>math</code> で引用符を展開しカーソルも移動。続けて式を打てる。</p>
+  </article>
+  <article>
+    <h3>長いオプションやパスの再利用</h3>
+    <video src="images/abbr-mv.mp4" autoplay muted loop playsinline controls aria-label="直前のパスを複製して移動先に.bakを付ける例"></video>
+    <p><code>,-1</code> で直前のパスを複製。末尾に <code>.bak</code> を足したりできる。</p>
+  </article>
+</div>
+
 
 ---
 
