@@ -23,6 +23,9 @@ section a, section strong { color: #096954; }
 section code { background: #e0ebe3; color: #124e45; border-radius: .18em; }
 section pre { background: #142e2b; padding: .8em 1em; border: 0; }
 section pre code { color: #dcf7dd; background: transparent; white-space: pre-wrap; overflow-wrap: anywhere; }
+section pre code span[class^="hljs-"] { color: #dcf7dd; }
+section pre code span.hljs-built_in, section pre code span.hljs-keyword { color: #ffd08a; }
+section pre code span.hljs-string { color: #a9e3ff; }
 section table { font-variant-numeric: tabular-nums; }
 section th, section td { padding: .25em 1.1em; }
 section th { background: #184f45; color: white; }
@@ -47,7 +50,7 @@ section.closing ul { list-style: none; padding: 0; }
 section.closing li { padding: .45em 0; border-top: 1px solid #527569; }
 .startup-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
 .startup-cards article { padding: 22px 28px; background: #edeae0; border-radius: 14px; }
-.startup-cards article:last-child { background: #dfecdf; }
+.startup-cards:not(.abbr-demos) article:last-child { background: #dfecdf; }
 .startup-cards h3 { margin: 0 0 10px; font-size: 1.14em; color: #124e45; }
 .startup-cards p { margin: 0; font-size: .94em; }
 .abbr-demos video { display: block; width: 100%; border-radius: 8px; margin: 16px 0; }
@@ -234,23 +237,21 @@ fishのabbrは関数で定義すると複雑なことができる
 ## シェルのaliasもたまにはいいぞ
 
 ```sh
-alias ll='ls -l'
+alias opus="claude --model opus"
 ```
 
-**いつも同じオプションで使うなら、これで十分。**
-
-入力も履歴も `ll` のまま。画面を一緒に見る人にも通じる短縮名なら使いやすい。
+編集も正規化も共通認識もいらないなら、展開は邪魔なだけ
 
 ---
 
 ## こんなaliasならいいぞ
 
-- 互換性の高いコマンド
-    - 例: `alias ls=eza`
-- 驚きの少ない設定のデフォルト化
-    - 例: `alias watch="watch --color"`
 - AIモデルの使い分け
-    - 例: haiku, sonnet, opus, fable
+    - haiku, sonnet, opus, fable
+- 互換性の高いコマンド
+    - `alias ls=eza`
+- 驚きの少ない設定のデフォルト化
+    - `alias watch="watch --color"`
 
 ---
 
