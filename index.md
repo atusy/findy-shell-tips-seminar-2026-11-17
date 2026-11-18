@@ -63,7 +63,7 @@ section.closing li strong { display: block; margin-bottom: 12px; color: #124e45;
 <!-- _class: cover -->
 <!-- _paginate: false -->
 
-# AIじゃなくてシェルで！<br>さっとやりたい時の設定Tips！！
+# AIじゃなくてシェルでさっと！<br>を叶える設定Tips
 
 <!-- https://findy.connpass.com/event/387107/ -->
 
