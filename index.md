@@ -55,6 +55,9 @@ section.closing li strong { display: block; margin-bottom: 12px; color: #124e45;
 .startup-cards p { margin: 0; font-size: .94em; }
 .abbr-demos video { display: block; width: 100%; border-radius: 8px; margin: 16px 0; }
 .abbr-demos article { min-width: 0; }
+.history-demo { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 32px; align-items: center; }
+.history-demo figure { margin: 0; }
+.history-demo video { display: block; width: 100%; border-radius: 12px; }
 </style>
 
 <!-- _class: cover -->
@@ -257,11 +260,25 @@ alias opus="claude --model opus"
 
 ## シェルのキーバインドを使いこなせ
 
-| こんなとき | 押すキー |
+| こんなとき | キー設定 |
 |---|---|
 | 長いコマンドの先頭を直したい | `Ctrl+A` |
 | 昨日打ったコマンドを探したい | `Ctrl+R` |
-| ファイル名の候補を出したい（Bash） | `Ctrl+X` → `Ctrl+F` |
+| ファイル名の候補を出したい | `Ctrl+X` → `Ctrl+F` |
+
+---
+
+## 特に履歴を使いこなせ
+
+<div class="history-demo">
+  <div>
+    <p><strong>最近の履歴ほど、また使いたいコマンドが溜まる。</strong></p>
+    <p>再利用性の低い複雑なコマンドを人が打つことが減ったから。</p>
+  </div>
+  <figure>
+    <video src="images/fzf-history.mp4" autoplay muted loop playsinline controls aria-label="gh pr chで履歴を絞り、以前のgh pr checkoutコマンドを呼び戻す例"></video>
+  </figure>
+</div>
 
 ---
 
