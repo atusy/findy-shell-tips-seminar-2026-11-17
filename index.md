@@ -128,9 +128,7 @@ section.closing li { padding: .45em 0; border-top: 1px solid #527569; }
 
 ## 起動高速化
 
-**最初の一文字を、いつ打てるか？**
-
-プロンプトが見えても、裏で走る `git status` の完了まで入力をブロックしたら待ち時間は残る。
+**最初の一文字をいつ打てるかが勝負**
 
 <div class="startup-cards">
   <article>
@@ -150,14 +148,31 @@ section.closing li { padding: .45em 0; border-top: 1px solid #527569; }
 
 <!-- _class: benchmark -->
 
-## fishの真の起動時間をはかる
+## 起動高速化の落とし穴
+
+**遅延先が最初の一文字の入力前だと意味がない**
+
+たとえばプロンプトにブランチを出したいとき
+
+```
+/some/path (git: master) $
+```
+
+ブランチ取得を非同期化・遅延しても、反映の非同期化が漏れると、反映完了までユーザーは入力できない
+
+---
+
+## シェルの真の起動時間をはかる
 
 - `fish -i -c exit`なんて測ってないよね……？
-- AIにベンチマーカー作ってもらおう
+- @AI: fishでユーザー入力ができるまでの所要時間をはかりたい
 
 ```fish
 hyperfine --warmup 5 --runs 10 "expect -c 'log_user 0; set timeout 5; spawn -noecho sh -c {stty rows 24 cols 120; exec env TERM=xterm-256color fish -i}; expect -exact [format {%c[0c} 27] {send -- [format {%c[?1;2c} 27]; exp_continue} -exact {133;B} {close; exit 0} timeout {exit 1} eof {exit 2}'"
 ```
+---
+
+## ベンチマーク結果
 
 |        | fish | zsh |
 |--------|------|-----|
