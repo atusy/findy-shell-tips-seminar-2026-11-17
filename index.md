@@ -58,6 +58,7 @@ section.closing li strong { display: block; margin-bottom: 12px; color: #124e45;
 .history-demo { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 32px; align-items: center; }
 .history-demo figure { margin: 0; }
 .history-demo video { display: block; width: 100%; border-radius: 12px; }
+section footer { left: 82px; right: 82px; bottom: 20px; font-size: 18px; color: #425850; }
 </style>
 
 <!-- _class: cover -->
@@ -152,6 +153,8 @@ AIがいれば、やりたいことに集中できる
 - fishは関数の自動読み込みが便利
 - zshなら [zsh-defer と zcompile を使った起動設定の例](https://zenn.dev/fuzmare/articles/zsh-plugin-manager-cache)も参考になる
 
+<!-- _footer: "atusy/dotfiles · [zshの遅延読み込み](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/sheldon/plugins.toml#L3-L10)" -->
+
 ---
 
 ## シェル起動高速化の落とし穴
@@ -165,6 +168,8 @@ AIがいれば、やりたいことに集中できる
 ブランチ取得の非同期化だけでは、ユーザー入力をブロックすることがある
 
 **先行入力を受け付けて、プロンプト更新を非同期化しよう**
+
+<!-- _footer: "atusy/dotfiles · [Git情報の非同期取得](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/functions/fish_prompt.fish#L39-L46) ／ [完了時の再描画](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/functions/fish_prompt.fish#L85-L87)" -->
 
 ---
 
@@ -215,6 +220,8 @@ gh pr checkout --detach
 - **画面共有で誤解がない**
     - aliasの`ll` みたいな `ls -l` か `ls -a` かわからない問題がない
 
+<!-- _footer: "atusy/dotfiles · [関連例：checkout-detach の展開条件](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/functions/__abbr-checkout-detach.fish#L1-L8)" -->
+
 ---
 
 ## こんなabbrもいいぞ
@@ -235,6 +242,8 @@ fishのabbrは関数で定義すると複雑なことができる
 </div>
 
 
+<!-- _footer: "atusy/dotfiles · [math と引数再利用の定義](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/config.fish#L38-L41) ／ [直前の引数を取り出す処理](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/functions/__abbr-pick-token.fish#L1-L11)" -->
+
 ---
 
 ## シェルのaliasもたまにはいいぞ
@@ -244,6 +253,10 @@ alias opus="claude --model opus"
 ```
 
 編集も正規化も共通認識もいらないなら、展開は邪魔なだけ
+
+ただしatusyはシェル間で挙動が揃う実行スクリプトを好む
+
+<!-- _footer: "atusy/dotfiles · [opus の実装（実行スクリプト）](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_local/lastresort/exact_bin/executable_opus#L1-L5)" -->
 
 ---
 
@@ -256,6 +269,8 @@ alias opus="claude --model opus"
 - 驚きの少ない設定のデフォルト化
     - `alias watch="watch --color"`
 
+<!-- _footer: "atusy/dotfiles · [ls のラッパー関数](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/functions/ls.fish#L1-L6) ／ [watch のラッパー関数](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/functions/watch.fish#L1-L3)" -->
+
 ---
 
 ## シェルのキーバインドを使いこなせ
@@ -265,6 +280,8 @@ alias opus="claude --model opus"
 | 長いコマンドの先頭を直したい | `Ctrl+A` |
 | 昨日打ったコマンドを探したい | `Ctrl+R` |
 | ファイル名の候補を出したい | `Ctrl+X` → `Ctrl+F` |
+
+<!-- _footer: "atusy/dotfiles · [fishのキー割り当て](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/config.fish#L43-L46)" -->
 
 ---
 
@@ -280,6 +297,8 @@ alias opus="claude --model opus"
   </figure>
 </div>
 
+<!-- _footer: "atusy/dotfiles · [fzfで選んだ候補を入力欄に戻す](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/functions/set_commandline_from_suggestions.fish#L11-L20)" -->
+
 ---
 
 ## シェルの補完も忘れるな
@@ -290,6 +309,8 @@ alias opus="claude --model opus"
 gh completion -s fish >~/.config/fish/completions/gh.fish
 ```
 
+<!-- _footer: "atusy/dotfiles · [gh補完の登録](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/config.fish#L63) ／ [補完ファイルの更新](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/functions/update_completion.fish#L1-L8)" -->
+
 ---
 
 ## 便利コマンド導入
@@ -299,6 +320,8 @@ gh completion -s fish >~/.config/fish/completions/gh.fish
 - zoxide: よくいくディレクトリに高速移動
 - direnv: ディレクトリごとに環境変数を変更
 - mise/nix: プロジェクトごとにコマンドのバージョンを固定
+
+<!-- _footer: "atusy/dotfiles · [mise・direnv・zoxideの初期化](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/config.fish#L22-L24) ／ [zoxideを使うz関数](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/functions/z.fish#L11-L26)" -->
 
 ---
 
