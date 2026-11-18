@@ -38,7 +38,6 @@ section.cover, section.closing {
 section.cover h1 { color: #f7f5e9; font-size: 2.22em; line-height: 1.28; }
 section.cover h2, section.closing h2, section.closing strong { color: #c2e89a; }
 section.cover h2 { font-size: 1em; margin-top: 1.4em; }
-section.closing li::marker { color: #c2e89a; }
 section::after { color: #688078; font-size: 17px; }
 section.benchmark pre { font-size: .62em; }
 section blockquote { border-left: 6px solid #84ac6e; color: #124e45; font-weight: 700; font-size: 1.5em; padding: .2em .65em; margin: .5em 0; }
@@ -46,8 +45,9 @@ section table { border-collapse: collapse; }
 section table :is(th, td) { text-align: left; border: 0; border-bottom: 1px solid #bdccc0; }
 section tbody tr:nth-child(n) { background: transparent; }
 section table th { font-size: .82em; }
-section.closing ul { list-style: none; padding: 0; }
-section.closing li { padding: .45em 0; border-top: 1px solid #527569; }
+section.closing ul { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; list-style: none; padding: 0; margin: 24px 0 0; }
+section.closing li { margin: 0; padding: 24px; border-radius: 14px; background: #edeae0; color: #172c29; font-size: .9em; }
+section.closing li strong { display: block; margin-bottom: 12px; color: #124e45; font-size: 1.12em; }
 .startup-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
 .startup-cards article { padding: 22px 28px; background: #edeae0; border-radius: 14px; }
 .startup-cards:not(.abbr-demos) article:last-child { background: #dfecdf; }
@@ -289,8 +289,8 @@ gh completion -s fish >~/.config/fish/completions/gh.fish
 
 ## まとめ
 
-AIに任せる作業が増えた今こそ、自分でよく打つコマンドに合わせて設定しよう
+AIに任せる作業が増えた今こそ、「さっとやりたい」をシェルで叶えよう
 
-- **すぐ打てる**　入力できるまでを測ろう。関数やプラグインは必要になってから読み込もう
-- **短く打てる**　よく打つコマンドはabbrで展開。履歴や補完も活用しよう
-- **すぐ取りかかれる**　移動はzoxide、環境の切り替えはdirenvやmise/nixで
+- **すぐ打てる** 起動直後に入力できるまで高速化しよう
+- **少なく打てる** よく打つコマンドはabbrで展開。履歴や補完も活用しよう
+- **すぐ取りかかれる** 移動はzoxide、環境の切り替えはdirenvやmise/nixで
