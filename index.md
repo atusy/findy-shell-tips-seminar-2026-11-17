@@ -75,13 +75,14 @@ section footer { left: 82px; right: 82px; bottom: 20px; font-size: 18px; color: 
 ## ![height:1em](images/headphone.jpg) atusy
 
 - 現職
-    - At Mark Inc. (<https://attm.co.jp/>)
+    - 株式会社アットマーク (<https://attm.co.jp/>)
     - 人材マッチングサービスの開発
     - Engineering Manager
 - 経歴
     - 地質コンサル → データサイエンティスト → BEエンジニア → フルスタックエンジニア → now
     - 福岡女子大学でキャリア講師として呼んでいただいたりも
 - 好きなもの
+    - Fish
     - Neovim
     - コーヒー（焙煎からやる）
 
