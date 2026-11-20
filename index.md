@@ -218,7 +218,7 @@ gh pr checkout --detach
 - **履歴検索を正規化できる**
     - ghの操作履歴を`gh`で検索できる
 - **画面共有で誤解がない**
-    - aliasの`ll` みたいな `ls -l` か `ls -a` かわからない問題がない
+    - aliasの`ll` みたいな `ls -l` か `ls -la` かわからない問題がない
 
 <!-- _footer: "atusy/dotfiles · [関連例：checkout-detach の展開条件](https://github.com/atusy/dotfiles/blob/ba3b08fd97761012c4ccd1168d18e4535f5a673b/dot_config/fish/functions/__abbr-checkout-detach.fish#L1-L8)" -->
 
